@@ -71,5 +71,21 @@ after_success:
   - cp -fl "$ROOTFS" ../product/* .
 
   # Push modified product files.
-  - git add .;
-    git commit -m "Built product from $TRAVIS_COMMIT." && git push origin HEAD:"$branch"
+  # - git add .;
+  #  git commit -m "Built product from $TRAVIS_COMMIT." && git push origin HEAD:"$branch"
+
+deploy:
+  provider: s3
+  access_key_id: AKIAIKREOKBSVRYWEQCQ
+  secret_access_key:
+    secure: jX7zq+oOGRmPNZkGEdodf0DxWHx4ZVanXvUPYmy7YHXm/50dY8gYiAkqEdtYF6byBHKZVATQ01UwWfVMGNZpYpPq+FMLnJN2O8f+9E0e9JmHkbGZt8deUWrIyr0YvxujVRgbt6G10fJjZCuzaF76HJJ1vlWgHtYvX+oweYCWWk4=
+  bucket: docker-nano-php
+  upload-dir: artifacts
+  acl: public_read
+  region: us-west-2
+  skip_cleanup: true
+  local-dir: newproduct
+  on:
+    repo: winglian/PHP
+    branch: latest
+
