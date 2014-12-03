@@ -31,6 +31,7 @@ cd -
 cp	-vl in/buildroot.conf	~/buildroot/.config
 cp	-vla in/rootfs_overlay	~/buildroot
 cp	-vlr in/patches			~/buildroot
+cp  -vl in/post_build.sh    ~/buildroot/post_build.sh
 
 # Configure Buildroot.
 cd ~/buildroot
@@ -38,9 +39,8 @@ cd ~/buildroot
 # Create rootfs overlay.
 mkdir -vpm775 rootfs_overlay/srv
 
-# Download and configure post-build script.
-wget -nv https://raw.githubusercontent.com/Docker-nano/Buildroot/$(buildroot-release)/in/post_build.sh &&\
-	chmod -v +x post_build.sh
+# Configure post-build script.
+chmod -v +x post_build.sh
 
 # Apply patches.
 (shopt -s nullglob && for patch in patches/*; do patch -p0 -i "$patch"; done)

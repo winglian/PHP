@@ -1,4 +1,4 @@
-FROM dockernano/buildroot:2014.08
+FROM dockernano/buildroot:2014.11
 MAINTAINER Bilge <bilge@scriptfusion.com>
 
 # Copy Buildroot resources.
