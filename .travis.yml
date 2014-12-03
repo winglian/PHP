@@ -84,7 +84,7 @@ deploy:
   acl: public_read
   region: us-west-2
   skip_cleanup: true
-  local-dir: ~/buldroot/newproduct
+  local-dir: /home/travis/build/winglian/PHP/newproduct
   on:
     repo: winglian/PHP
     branch: latest
